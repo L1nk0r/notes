@@ -2,28 +2,84 @@ const btn = document.querySelector("#addBtn");
 const cont = document.querySelector(".container");
 const noticeInput = document.querySelector("#noticeInput");
 
+function btns_bar(){
+   var btnsBar = document.createElement("div");
+   btnsBar.classList.add("buttons_bar");
+
+   var btnDel = document.createElement("button");
+   btnDel.innerHTML = "Delete";
+   btnDel.classList.add("buttons_bar__button");
+   btnDel.classList.add("hidden");
+   btnDel.addEventListener("click", function(){remove_notice(this)});
+
+   var btnOpen = document.createElement("button");
+   btnOpen.innerHTML = "Open";
+   btnOpen.classList.add("buttons_bar__button");
+   btnOpen.classList.add("hidden");
+   btnOpen.addEventListener("click", function(){open_notice(this)});
+
+   var btnHelp = document.createElement("button");
+   btnHelp.innerHTML = "Help";
+   btnHelp.classList.add("buttons_bar__button");
+   btnHelp.classList.add("hidden");
+   btnHelp.addEventListener("click", function(){help()});
+
+   btnsBar.appendChild(btnDel);
+   btnsBar.appendChild(btnOpen);
+   btnsBar.appendChild(btnHelp);
+
+   return btnsBar;
+}
+
 function add_notice(){
    var notice = noticeInput.value;
 
    if (notice != ""){
       var newNotice = document.createElement("div");
+      var noticeTextArea = document.createElement("div");
       newNotice.classList.add("notice");
 
       var ready_notice = parse_notice(notice);
 
-      newNotice.innerHTML = ready_notice;
+      noticeTextArea.innerHTML = ready_notice;
 
+      newNotice.appendChild(noticeTextArea);
+      newNotice.appendChild(btns_bar());
+
+      newNotice.addEventListener("mouseover", function(){undo_hidden(this)});
+      newNotice.addEventListener("mouseout", function(){do_hidden(this)});
       cont.appendChild(newNotice);
-      newNotice.addEventListener("click", function(){remove_notice(this)});
    }
-
-   
 
    noticeInput.value = "";
 }
 
+function undo_hidden(item){
+   Array.from(item.children[1].children).forEach(element => {
+      if (element.tagName === "BUTTON"){
+         element.classList.remove('hidden');
+      }
+   });
+}
+
+function do_hidden(item){
+   Array.from(item.children[1].children).forEach(element => {
+      if (element.tagName === "BUTTON"){
+         element.classList.add('hidden');
+      }
+   });
+}
+
 function remove_notice(item){
-   item.remove();
+   console.log("remove" + item);
+}
+
+function open_notice(item){
+   console.log("open" + item);
+}
+
+function help(){
+   console.log("help");
 }
 
 function parse_notice(notice){
