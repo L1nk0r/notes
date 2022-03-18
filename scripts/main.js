@@ -7,19 +7,19 @@ function btns_bar(){
    btnsBar.classList.add("buttons_bar");
 
    var btnDel = document.createElement("button");
-   btnDel.innerHTML = "Delete";
+   btnDel.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
    btnDel.classList.add("buttons_bar__button");
    btnDel.classList.add("hidden");
-   btnDel.addEventListener("click", function(){remove_notice(this)});
+   btnDel.addEventListener("click", function(){remove_notice(this.parentNode.parentNode)});
 
    var btnOpen = document.createElement("button");
-   btnOpen.innerHTML = "Open";
+   btnOpen.innerHTML = '<i class="fa-solid fa-book-open"></i>';
    btnOpen.classList.add("buttons_bar__button");
    btnOpen.classList.add("hidden");
    btnOpen.addEventListener("click", function(){open_notice(this)});
 
    var btnHelp = document.createElement("button");
-   btnHelp.innerHTML = "Help";
+   btnHelp.innerHTML = '<i class="fa-solid fa-info"></i>';
    btnHelp.classList.add("buttons_bar__button");
    btnHelp.classList.add("hidden");
    btnHelp.addEventListener("click", function(){help()});
@@ -71,7 +71,7 @@ function do_hidden(item){
 }
 
 function remove_notice(item){
-   console.log("remove" + item);
+   item.remove();
 }
 
 function open_notice(item){

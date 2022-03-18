@@ -102,9 +102,15 @@ html, body{
 }
 
 .buttons_bar__button{
-   width:30%;
-   height: 20px;
+   width:30px;
+   height: 30px;
    opacity: 0.9;
+   border-radius: 50%;
+   margin: 2px;
+
+   background-color: var(--medium);
+   color: var(--light_blue);
+   border: 2px solid var(--light_blue);
 
    transition: 0.2s;
 }
@@ -112,4 +118,8 @@ html, body{
 .buttons_bar__button.hidden{
    opacity: 0;
    transform: translateY(200px);
+}
+
+.buttons_bar__button:hover{
+   background-color: var(--dark_blue);
 }
