@@ -11,15 +11,33 @@
    <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-
    <div class="header">
       <h1>Notes</h1>
    </div>
 
    <div class="container">
-      <div class="form">
-         <textarea type="text" placeholder="Type here..." id="noticeInput"></textarea>
-         <button id="addBtn">Add</button>
+      <div class="create">
+         <div class="form">
+            <textarea type="text" placeholder="Type here..." id="noticeInput"></textarea>
+            <button id="addBtn">Add</button>
+         </div>
+         <div class="wrapper">
+            <div class="toast">
+               <div class="content">
+                  <div class="icon">
+                     <i class="fa-solid fa-info"></i>
+                  </div>
+                  <div class="details">
+                     <p>Use '#' before the string to make it header.</p>
+                     <p>Use '!' before the string to make it <i>Italic</i>.</p>
+                     <p>Use '+' before the string to make it <b>Bold</b>.</p> 
+                  </div>
+                  <div class="close-icon">
+                     <i class="fa-solid fa-xmark"></i>
+                  </div>
+               </div>
+            </div>
+         </div>
       </div>
    </div>
 

@@ -2,6 +2,13 @@ const btn = document.querySelector("#addBtn");
 const cont = document.querySelector(".container");
 const noticeInput = document.querySelector("#noticeInput");
 
+const wrapper = document.querySelector(".wrapper");
+let toast = wrapper.querySelector(".toast");
+let closeIcon = toast.querySelector(".close-icon");
+
+closeIcon.addEventListener("click", function(){closeNotification()})
+
+
 function btns_bar(){
    var btnsBar = document.createElement("div");
    btnsBar.classList.add("buttons_bar");
@@ -18,15 +25,15 @@ function btns_bar(){
    btnOpen.classList.add("hidden");
    btnOpen.addEventListener("click", function(){open_notice(this)});
 
-   var btnHelp = document.createElement("button");
-   btnHelp.innerHTML = '<i class="fa-solid fa-info"></i>';
-   btnHelp.classList.add("buttons_bar__button");
-   btnHelp.classList.add("hidden");
-   btnHelp.addEventListener("click", function(){help()});
+   var btnEdit = document.createElement("button");
+   btnEdit.innerHTML = '<i class="fa-solid fa-pen"></i>';
+   btnEdit.classList.add("buttons_bar__button");
+   btnEdit.classList.add("hidden");
+   btnEdit.addEventListener("click", function(){edit_notice()});
 
    btnsBar.appendChild(btnDel);
    btnsBar.appendChild(btnOpen);
-   btnsBar.appendChild(btnHelp);
+   btnsBar.appendChild(btnEdit);
 
    return btnsBar;
 }
@@ -78,8 +85,8 @@ function open_notice(item){
    console.log("open" + item);
 }
 
-function help(){
-   console.log("help");
+function edit_notice(){
+   console.log('edit');
 }
 
 function parse_notice(notice){
@@ -98,6 +105,10 @@ function parse_notice(notice){
    });
 
    return result;
+}
+
+function closeNotification(){
+   remove_notice(document.querySelector(".wrapper"));
 }
 
 btn.addEventListener("click", function(){add_notice()});
