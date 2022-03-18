@@ -31,7 +31,11 @@ function parse_notice(notice){
    let result = "";
    strings.forEach(string => {
       if (string[0] === '#'){
-         result += "<h2>" + string + "</h2>\n";
+         result += "<h2>" + string.substr(1) + "</h2>\n";
+      } else if (string[0] === '!'){
+         result += "<p><i>" + string.substr(1) + "</i>\n";
+      } else if (string[0] === '+'){
+         result += "<p><b>" + string.substr(1) + "</b>\n";
       } else {
          result += "<p>" + string + "\n";
       }
