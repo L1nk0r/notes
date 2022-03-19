@@ -2,6 +2,8 @@ const btn = document.querySelector("#addBtn");
 const cont = document.querySelector(".container");
 const noticeInput = document.querySelector("#noticeInput");
 
+/* let keyI = localStorage.length; */
+
 const wrapper = document.querySelector(".wrapper");
 let toast = wrapper.querySelector(".toast");
 let closeIcon = toast.querySelector(".close-icon");
@@ -40,22 +42,11 @@ function btns_bar(){
 
 function add_notice(){
    var notice = noticeInput.value;
+   /* localStorage.setItem(`${keyI}`, notice);
+   keyI++; */
 
    if (notice != ""){
-      var newNotice = document.createElement("div");
-      var noticeTextArea = document.createElement("div");
-      newNotice.classList.add("notice");
-
-      var ready_notice = parse_notice(notice);
-
-      noticeTextArea.innerHTML = ready_notice;
-
-      newNotice.appendChild(noticeTextArea);
-      newNotice.appendChild(btns_bar());
-
-      newNotice.addEventListener("mouseover", function(){undo_hidden(this)});
-      newNotice.addEventListener("mouseout", function(){do_hidden(this)});
-      cont.appendChild(newNotice);
+      add_notice_area(notice);
    }
 
    noticeInput.value = "";
@@ -75,6 +66,24 @@ function do_hidden(item){
          element.classList.add('hidden');
       }
    });
+}
+
+function add_notice_area(notice){
+   var newNotice = document.createElement("div");
+   var noticeTextArea = document.createElement("div");
+   newNotice.classList.add("notice");
+
+   var ready_notice = parse_notice(notice);
+
+   noticeTextArea.innerHTML = ready_notice;
+
+   newNotice.appendChild(noticeTextArea);
+   newNotice.appendChild(btns_bar());
+
+   newNotice.addEventListener("mouseover", function(){undo_hidden(this)});
+   newNotice.addEventListener("mouseout", function(){do_hidden(this)});
+
+   cont.appendChild(newNotice);
 }
 
 function remove_notice(item){
@@ -111,4 +120,13 @@ function closeNotification(){
    remove_notice(document.querySelector(".wrapper"));
 }
 
+/* function onLoad(){
+   let keys = Object.keys(localStorage);
+   for(let key of keys) {
+      add_notice_area(localStorage.removeItem(key));
+   }
+} */
+
 btn.addEventListener("click", function(){add_notice()});
+
+/* window.onload = onLoad(); */
