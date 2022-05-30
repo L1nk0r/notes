@@ -2,7 +2,7 @@ const btn = document.querySelector("#addBtn");
 const cont = document.querySelector(".container");
 const noticeInput = document.querySelector("#noticeInput");
 
-/* let keyI = localStorage.length; */
+let keyI = localStorage.length;
 
 const wrapper = document.querySelector(".wrapper");
 let toast = wrapper.querySelector(".toast");
@@ -42,8 +42,8 @@ function btns_bar(){
 
 function add_notice(){
    var notice = noticeInput.value;
-   /* localStorage.setItem(`${keyI}`, notice);
-   keyI++; */
+   localStorage.setItem(`${keyI}`, notice);
+   keyI++;
 
    if (notice != ""){
       add_notice_area(notice);
@@ -120,13 +120,13 @@ function closeNotification(){
    remove_notice(document.querySelector(".wrapper"));
 }
 
-/* function onLoad(){
+function onLoad(){
    let keys = Object.keys(localStorage);
    for(let key of keys) {
-      add_notice_area(localStorage.removeItem(key));
+      add_notice_area(localStorage.getItem(key));
    }
-} */
+}
 
 btn.addEventListener("click", function(){add_notice()});
 
-/* window.onload = onLoad(); */
+window.onload = onLoad();
